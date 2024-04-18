@@ -1,6 +1,7 @@
 require("express-async-errors");
 const express = require("express");
 const app = express();
+const cors = require("cors");
 const userRouter = require("./routes/userRoutes");
 const customerRouter = require("./routes/customerRoutes");
 const supplierRouter = require("./routes/supplierRoutes");
@@ -10,6 +11,8 @@ const supplierBillRouter = require("./routes/supplierBillRoutes");
 const ErrorController = require("./controllers/errorController");
 const AppError = require("./utils/appError");
 app.use(express.json());
+app.use(cors());
+app.options("*", cors());
 app.use("/api/v1/user", userRouter);
 
 app.use("/api/v1/customer", customerRouter);
