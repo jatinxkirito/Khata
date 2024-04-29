@@ -13,14 +13,17 @@ exports.sendOTP = async (req, res, next) => {
   //console.log(process.env.VERIFICATION_SID);
   verificationRequest = await twilio.verify.v2
     .services(process.env.VERIFICATION_SID)
-    .verifications.create({ to: req.body.number, channel: "sms" });
+    .verifications.create({ to: "+91" + req.body.number, channel: "sms" });
   //console.log(verificationRequest);
   return res.status(200).json({ status: "success" });
 };
 exports.verifyOTP = async (req, res, next) => {
   verificationResult = await twilio.verify.v2
     .services(process.env.VERIFICATION_SID)
-    .verificationChecks.create({ code: req.body.code, to: req.body.number });
+    .verificationChecks.create({
+      code: req.body.code,
+      to: "+91" + req.body.number,
+    });
   if (verificationResult.status === "approved")
     return res.status(200).json({ status: "success" });
   return res.status(500).json({ status: verificationResult.status });
