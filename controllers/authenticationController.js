@@ -28,10 +28,10 @@ exports.verifyOTP = async (req, res, next) => {
     return res.status(200).json({ status: "success" });
   return res.status(500).json({ status: verificationResult.status });
 };
-exports.getToken = exports.userExists = async (req, res, next) => {
+exports.userExists = async (req, res, next) => {
   const number = req.body.number;
   const user = await User.findOne({ contact: number });
-  if (user) return res.status(200).json({ status: "success" });
+  if (user) return res.status(200).json({ status: "success", id: user._id });
   return next(
     new AppError(
       (message = "User not found. Please signup first"),
