@@ -8,6 +8,15 @@ exports.getCustomer = async (req, res, next) => {
   });
 };
 exports.addCustomer = async (req, res, next) => {
+  const prev = await Customer.findOne({
+    contact: req.body.contact,
+    user: req.body.user,
+  });
+  // console.log(prev);
+  if (prev)
+    return res
+      .status(400)
+      .json({ status: "fail", message: "Customer already exists" });
   const bd = await Customer.create(req.body);
   return res.status(201).json({
     status: "success",
@@ -15,4 +24,9 @@ exports.addCustomer = async (req, res, next) => {
       customer: bd,
     },
   });
+};
+exports.findCustomers = async (req, res, next) => {
+  const customers = await Customer.find({ user: req.params.user });
+
+  return res.status(200).json({ status: "success", data: customers });
 };
