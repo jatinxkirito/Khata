@@ -17,3 +17,13 @@ exports.createProduct = async (req, res, next) => {
     },
   });
 };
+exports.findProducts = async (req, res, next) => {
+  if (req.query.supplier) {
+    var products = await Product.find({
+      user: req.query.user,
+      supplier: req.query.supplier,
+    });
+  }
+  products = await Product.find({ user: req.query.user });
+  return res.status(200).json({ status: "success", data: products });
+};
