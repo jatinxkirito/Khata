@@ -17,3 +17,13 @@ exports.createBill = async (req, res, next) => {
     },
   });
 };
+exports.findBills = async (req, res, next) => {
+  if (req.query.customer) {
+    var bills = await SupplierBill.find({
+      user: req.query.user,
+      supplier: req.query.supplier,
+    });
+  }
+  bills = await SupplierBill.find({ user: req.query.user });
+  return res.status(200).json({ status: "success", data: bills });
+};

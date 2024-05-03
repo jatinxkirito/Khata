@@ -18,3 +18,8 @@ exports.createSupplier = async (req, res, next) => {
     },
   });
 };
+exports.findSuppliers = async (req, res, next) => {
+  const suppliers = await Supplier.find({ user: req.params.user });
+
+  return res.status(200).json({ status: "success", data: suppliers });
+};

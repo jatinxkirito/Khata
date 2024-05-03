@@ -15,6 +15,11 @@ const supplierSchema = new mongoose.Schema(
         "Please provide a valid phone number",
       ],
     },
+    user: {
+      type: mongoose.SchemaTypes.ObjectId,
+      ref: "User",
+      required: true,
+    },
     photo: {
       type: String,
       default: "default.jpg",

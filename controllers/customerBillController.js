@@ -21,7 +21,7 @@ exports.findBills = async (req, res, next) => {
   if (req.query.customer) {
     var bills = await CustomerBill.find({
       user: req.query.user,
-      supplier: req.query.customer,
+      customer: req.query.customer,
     });
   }
   bills = await CustomerBill.find({ user: req.query.user });
