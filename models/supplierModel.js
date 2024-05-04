@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
-
 const supplierSchema = new mongoose.Schema(
   {
     name: {
       type: "String",
       required: [true, "Name is required"],
     },
+
     contact: {
       type: "String",
       required: [true, "Phone number is required"],
