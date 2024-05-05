@@ -9,6 +9,10 @@ const productSchema = new mongoose.Schema(
       type: Number,
       required: [true, "Price is required"],
     },
+    sales: {
+      type: Number,
+      default: 0,
+    },
     slug: {
       type: "String",
       required: [true, "Slug is required"],
