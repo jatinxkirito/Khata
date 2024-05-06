@@ -50,7 +50,7 @@ customerBillschema.post("save", async function (data) {
           $add: ["$totalBusiness", data.amount],
         },
         pendingAmount: {
-          $add: ["$pendingAmount", data.amount],
+          $add: ["$pendingAmount", data.unpaid],
         },
       },
     },
