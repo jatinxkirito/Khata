@@ -6,4 +6,7 @@ supplierRouter.route("/get/:id").get(supplierController.getSupplier);
 supplierRouter
   .route("/findSuppliers/:user")
   .get(supplierController.findSuppliers);
+supplierRouter
+  .route("/editSupplier/:id")
+  .patch(supplierController.editSupplier);
 module.exports = supplierRouter;

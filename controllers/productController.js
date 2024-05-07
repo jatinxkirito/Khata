@@ -33,6 +33,21 @@ exports.createProduct = async (req, res, next) => {
     },
   });
 };
+
+exports.editProduct = async (req, res, next) => {
+  var dt = {};
+  var { name, image, price } = req.body;
+  slug = undefined;
+  if (name) slug = slugify(name, { lower: true });
+  dt = { name, image, slug };
+  if (price) dt["price"] = price;
+  // console.log(dt);
+  const ot = await Product.findByIdAndUpdate(req.params.id, dt, {
+    new: true,
+  });
+
+  return res.status(200).json({ status: "success", data: ot });
+};
 exports.findProducts = async (req, res, next) => {
   if (req.query.supplier) {
     var products = await Product.find({

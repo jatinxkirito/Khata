@@ -28,6 +28,15 @@ exports.createSupplier = async (req, res, next) => {
     },
   });
 };
+exports.editSupplier = async (req, res, next) => {
+  const dt = {};
+  if (req.body.name) dt["name"] = req.body.name;
+  if (req.body.contact) dt["contact"] = req.body.contact;
+  const ot = await Supplier.findByIdAndUpdate(req.params.id, dt, {
+    returnOriginal: false,
+  });
+  return res.status(200).json({ status: "success", data: ot });
+};
 exports.findSuppliers = async (req, res, next) => {
   const suppliers = await Supplier.find({ user: req.params.user });
 

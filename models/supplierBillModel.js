@@ -1,12 +1,17 @@
 const mongoose = require("mongoose");
+
 const supplierBillschema = new mongoose.Schema({
   transactionDate: {
     type: "Date",
     default: Date.now(),
   },
   amount: {
-    type: "Number",
+    type: mongoose.SchemaTypes.Number,
     required: true,
+  },
+  pending: {
+    type: mongoose.SchemaTypes.Number,
+    default: 0,
   },
   items: [
     {

@@ -22,11 +22,11 @@ const customerSchema = new mongoose.Schema({
     default: "default.jpg",
   },
   totalBusiness: {
-    type: "Number",
+    type: mongoose.SchemaTypes.Number,
     default: 0,
   },
   pendingAmount: {
-    type: "Number",
+    type: mongoose.SchemaTypes.Number,
     default: 0,
   },
 });

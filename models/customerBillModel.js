@@ -7,11 +7,11 @@ const customerBillschema = new mongoose.Schema({
     default: Date.now(),
   },
   amount: {
-    type: "Number",
+    type: mongoose.SchemaTypes.Number,
     required: true,
   },
   unpaid: {
-    type: Number,
+    type: mongoose.SchemaTypes.Number,
     default: 0,
   },
   items: [

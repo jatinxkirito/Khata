@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+
 const productSchema = new mongoose.Schema(
   {
     name: {
@@ -6,7 +7,7 @@ const productSchema = new mongoose.Schema(
       required: [true, "Product must have a name"],
     },
     price: {
-      type: Number,
+      type: mongoose.SchemaTypes.Number,
       required: [true, "Price is required"],
     },
     sales: {

@@ -1,3 +1,4 @@
+const { response } = require("express");
 const Customer = require("../models/customerModel");
 exports.getCustomer = async (req, res, next) => {
   const id = req.params.id;
@@ -24,6 +25,15 @@ exports.addCustomer = async (req, res, next) => {
       customer: bd,
     },
   });
+};
+exports.editCustomer = async (req, res, next) => {
+  const dt = {};
+  if (req.body.name) dt["name"] = req.body.name;
+  if (req.body.contact) dt["contact"] = req.body.contact;
+  const ot = await Customer.findByIdAndUpdate(req.params.id, dt, {
+    returnOriginal: false,
+  });
+  return res.status(200).json({ status: "success", data: ot });
 };
 exports.findCustomers = async (req, res, next) => {
   const customers = await Customer.find({ user: req.params.user });
